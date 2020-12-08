@@ -1,0 +1,6 @@
+<%= link_to 'library', user_equations_path(current_user) %>
+
+<%= simple_form_for [current_user, @equation] do |f| %>
+  <%= f.input :title %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
