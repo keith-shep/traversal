@@ -1,0 +1,10 @@
+<h1>Library</h1>
+
+<ul> <% @equations.each do |equation| %>
+  <li> <%= link_to equation.title, equation_path(equation) %></li>
+  <ul>
+    <li> created on <%= equation.created_at %></li>
+    <li> <%= link_to 'Delete', delete_equation_path(equation), method: :delete %> </li>
+  </ul>
+  <% end %>
+</ul>
