@@ -17,14 +17,18 @@ ActiveRecord::Schema.define(version: 2020_12_07_085011) do
 
   create_table "equations", force: :cascade do |t|
     t.string "title"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_equations_on_user_id"
   end
 
   create_table "steps", force: :cascade do |t|
     t.string "latex"
+    t.bigint "equation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["equation_id"], name: "index_steps_on_equation_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,4 +46,6 @@ ActiveRecord::Schema.define(version: 2020_12_07_085011) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "equations", "users"
+  add_foreign_key "steps", "equations"
 end
