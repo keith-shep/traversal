@@ -11,17 +11,21 @@ class StepsController < ApplicationController
     @equation = Equation.find(params[:equation_id])
     @step = Step.new(step_params)
     @step.equation = @equation
-    @step.save
+    if @step.save
+      redirect_to equation_path(@equation)
+    else
+      render :new # should render error message
+    end
   end
 
   def edit
-    @edit = Edit.find(params[:id])
+    @step = Step.find([params(:id)])
   end
 
   def update
-    @edit = Edit.find(params[:id])
-    @edit.update(step_params)
-    # routing?
+    @step = Step.find(params[:id])
+    @step.update(step_params)
+    redirect_to equation_path(@equation)
   end
 
   def destroy

@@ -4,6 +4,7 @@
 
 <% @equation.steps.each do |step| %>
 <h4><%= step.latex %></h4>
+<%#= link_to 'Edit', edit_step_path(@step) %>
   <% end %>
 
 <%= simple_form_for [@equation, @step] do |f| %>
