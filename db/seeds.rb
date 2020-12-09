@@ -1,31 +1,27 @@
+puts ""
+
 puts 'Cleaning db...'
 
 User.destroy_all
 
 puts 'db cleaned!'
+puts ""
 
-puts 'Creating user...'
+puts 'Creating test user...'
+
 user1 = User.new(
-  email:'keith@keith.com',
+  email:'test@test.com',
   password: "123123",
-  username: "keith",
-  first_name: "keith",
-  last_name: "keith",
+  username: "test",
+  first_name: "test",
+  last_name: "test",
 )
 
-user2 = User.new(
-  email:'tom@tom.com',
-  password: "123456",
-  username: "tom",
-  first_name: "tom",
-  last_name: "tom",
-)
 
 user1.save
-puts 'User 1 created!'
+puts 'Test user created!'
 
-user2.save
-puts 'User 2 created!'
+puts ""
 
 ########################
 
@@ -100,7 +96,7 @@ puts 'Creating eq4...'
 eq4 = Equation.new(
   title: "square root, pg 52, eg 3",
 )
-eq4.user = user2
+eq4.user = user1
 eq4.save
 
 s1 = Step.new(latex:"\sqrt{8}\div \sqrt{2}")
@@ -126,7 +122,7 @@ puts 'Creating eq5...'
 eq5 = Equation.new(
   title: "surds, pg 55, eg 5",
 )
-eq5.user = user2
+eq5.user = user1
 eq5.save
 
 
