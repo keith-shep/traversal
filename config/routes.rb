@@ -10,10 +10,12 @@ Rails.application.routes.draw do
     resources :steps, only: [ :create, :index]
   end
 
+  resources :equations, only: [:index]
+
   resources :steps, only: [ :destroy, :edit, :update ]
 
   resources :users, only: [ ] do
-    resources :equations, only: [ :create, :new, :index]
+    resources :equations, only: [ :create, :new]
   end
 
   resources :equations, only: [:show ]
