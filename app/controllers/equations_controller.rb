@@ -23,6 +23,7 @@ class EquationsController < ApplicationController
   def show
     @equation = Equation.find(params[:id])
     @step = Step.new
+
   end
 
   def destroy
