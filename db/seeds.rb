@@ -13,9 +13,22 @@ user1 = User.new(
   last_name: "keith",
 )
 
-puts 'User created!'
+user2 = User.new(
+  email:'tom@tom.com',
+  password: "123456",
+  username: "tom",
+  first_name: "tom",
+  last_name: "tom",
+)
+
+user1.save
+puts 'User 1 created!'
+
+user2.save
+puts 'User 2 created!'
 
 ########################
+
 
 puts 'Creating eq1...'
 eq1 = Equation.new(
@@ -24,11 +37,12 @@ eq1 = Equation.new(
 eq1.user = user1
 eq1.save
 
+
 s1 = Step.new(latex: "x + 1 = 3")
 s2 = Step.new(latex: "x = 2")
 
-s1.user = user1
-s2.user = user1
+s1.equation = eq1
+s2.equation = eq1
 
 s1.save
 s2.save
@@ -86,7 +100,7 @@ puts 'Creating eq4...'
 eq4 = Equation.new(
   title: "square root, pg 52, eg 3",
 )
-eq4.user = user1
+eq4.user = user2
 eq4.save
 
 s1 = Step.new(latex:"\sqrt{8}\div \sqrt{2}")
@@ -112,7 +126,7 @@ puts 'Creating eq5...'
 eq5 = Equation.new(
   title: "surds, pg 55, eg 5",
 )
-eq5.user = user1
+eq5.user = user2
 eq5.save
 
 
@@ -121,10 +135,10 @@ s2 = Step.new(latex:"\left(\sqrt{3}\right)^2-9\left(\sqrt{2}\right)^2")
 s3 = Step.new(latex:"3-9\left(2\right)")
 s4 = Step.new(latex:"-19")
 
-s1.equation = eq4
-s2.equation = eq4
-s3.equation = eq4
-s4.equation = eq4
+s1.equation = eq5
+s2.equation = eq5
+s3.equation = eq5
+s4.equation = eq5
 
 s1.save
 s2.save
