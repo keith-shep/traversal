@@ -11,11 +11,8 @@
   </div>
 <% end %>
 
-<p>Type math here:
-</p>
-
 <%= simple_form_for [@equation, @step] do |f| %>
-  <%= f.input :latex, label: false %>
+  <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
   <span class="w-100" id="mathquill-editable"></span>
  <%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
 <% end %>

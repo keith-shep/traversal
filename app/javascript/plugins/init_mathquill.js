@@ -14,7 +14,8 @@ const initMathQuill = () => {
         // latexSpan.textContent = mathField.latex(); // simple API
         const input = document.querySelector('#step_latex');
         const latexStr = mathField.latex()
-        debugger;
+        input.value = latexStr
+
       }
     }
   });
