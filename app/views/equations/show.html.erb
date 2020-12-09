@@ -1,12 +1,14 @@
-<%= link_to 'Back to library', user_equations_path(current_user) %>
+<%= link_to 'Back to library', equations_path(current_user) %>
 
 
 <h2><%= @equation.title %></h2>
 
 <% @equation.steps.each do |step| %>
-<h4><%= step.latex %></h4>
-<%= link_to 'Edit', edit_step_path(step) %>
-<%= link_to 'Delete', delete_step_path(step), method: :delete %>
+<div class="step d-flex">
+  <h4><%= step.latex %></h4>
+  <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted mx-2"%>
+  <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
+</div>
   <% end %>
 
 <%= simple_form_for [@equation, @step] do |f| %>
