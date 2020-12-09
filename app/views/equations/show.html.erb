@@ -4,8 +4,12 @@
 <h2><%= @equation.title %></h2>
 
 <% @equation.steps.each do |step| %>
-  <div class="step d-flex">
-    <h4><%= step.latex %></h4>
+  <div class="steps d-flex">
+    <h4>
+      <div class="step">
+        <%= step.latex %>
+      </div>
+    </h4>
     <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted mx-2"%>
     <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
   </div>
