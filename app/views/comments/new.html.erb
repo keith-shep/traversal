@@ -1,0 +1,4 @@
+<%= simple_form_for [@step, @comment] do |f| %>
+  <%= f.input :message, label: Comment %>
+  <%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
+<% end %>
