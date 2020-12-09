@@ -10,15 +10,21 @@ Rails.application.routes.draw do
     resources :steps, only: [ :create, :index]
   end
 
+<<<<<<< HEAD
   resources :equations, only: [:index]
 
   resources :steps, only: [ :destroy, :edit, :update ]
+=======
+  resources :steps, only: [ :edit, :update ]
+  delete "steps/:id", to: "steps#destroy", as: 'delete_step'
+>>>>>>> master
 
   resources :users, only: [ ] do
     resources :equations, only: [ :create, :new]
   end
 
-  resources :equations, only: [:show ]
+  resources :equations, only: [ :show ]
+  get "equations/:id", to: "equations#show", as: 'equation_show'
   delete "equations/:id", to: "equations#destroy", as: 'delete_equation'
 
 end
