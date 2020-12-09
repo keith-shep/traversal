@@ -26,4 +26,10 @@ Rails.application.routes.draw do
   get "equations/:id", to: "equations#show", as: 'equation_show'
   delete "equations/:id", to: "equations#destroy", as: 'delete_equation'
 
+  resources :steps, only: [] do
+    resources :comments, only: [ :create, :new]
+  end
+
+  delete "comments/:id", to: "comments#destroy", as: 'delete_comment'
+
 end
