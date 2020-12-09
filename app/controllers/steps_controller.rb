@@ -4,7 +4,6 @@ class StepsController < ApplicationController
   end
 
   def new
-
   end
 
   def create
@@ -19,19 +18,19 @@ class StepsController < ApplicationController
   end
 
   def edit
-    @step = Step.find([params(:id)])
+    @step = Step.find(params[:id])
   end
 
   def update
     @step = Step.find(params[:id])
     @step.update(step_params)
-    redirect_to equation_path(@equation)
+    redirect_to equation_show_path(@step.equation)
   end
 
   def destroy
     @step = Step.find(params[:id])
-    @Step.destroy
-    # redirect_to user_equations_path(@equation.user)?
+    @step.destroy
+    redirect_to equation_show_path(@step.equation)
   end
 
   private

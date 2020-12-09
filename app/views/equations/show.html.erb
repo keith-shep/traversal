@@ -1,13 +1,15 @@
-<%= link_to 'library', user_equations_path(current_user) %>
+<%= link_to 'Back to library', user_equations_path(current_user) %>
+
 
 <h2><%= @equation.title %></h2>
 
 <% @equation.steps.each do |step| %>
 <h4><%= step.latex %></h4>
-<%#= link_to 'Edit', edit_step_path(@step) %>
+<%= link_to 'Edit', edit_step_path(step) %>
+<%= link_to 'Delete', delete_step_path(step), method: :delete %>
   <% end %>
 
 <%= simple_form_for [@equation, @step] do |f| %>
- <%= f.input :latex %>
+ <%= f.input :latex, label: false %>
  <%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
 <% end %>
