@@ -5,13 +5,15 @@
 
   <% @equations.each do |equation| %>
     <%= link_to equation_path(equation), class:"shadow-sm list-group-item list-group-item-action flex-column align-items-start" do %>
+      <% t = equation.created_at + 8.hours %>
 
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"> <%= equation.title %>  </h5>
-        <small>3 days ago</small>
+        <h3 class="mb-1"> <%= equation.title %>  </h3>
+
+        <small> 2 days ago </small>
       </div>
       <p class="mb-1"><%= equation.title %></p>
-      <small><%= equation.created_at %></small>
+      <small><%= t.strftime("Created %A, %d %B %Y at %I:%M %p") %></small>
 
     <% end %>
   <% end %>
