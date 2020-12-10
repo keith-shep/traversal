@@ -3,16 +3,17 @@
 
 <div class="list-group">
 
-  <% @equations.each do |equation| %>
+  <% @equations.reverse_each do |equation| %>
     <%= link_to equation_path(equation), class:"shadow-sm list-group-item list-group-item-action flex-column align-items-start" do %>
       <% t = equation.created_at + 8.hours %>
 
       <div class="d-flex w-100 justify-content-between">
         <h3 class="mb-1"> <%= equation.title %>  </h3>
 
+
         <small> 2 days ago </small>
       </div>
-      <p class="mb-1"><%= equation.title %></p>
+
       <small><%= t.strftime("Created %A, %d %B %Y at %I:%M %p") %></small>
 
     <% end %>
