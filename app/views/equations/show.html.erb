@@ -1,5 +1,5 @@
 
-<%= link_to 'Back to library', equations_path(current_user) %>
+<%= link_to 'Back to library', equations_path %>
 
 <h2><%= @equation.title %></h2>
 
@@ -21,6 +21,3 @@
   <span class="w-100" id="mathquill-editable"></span>
  <%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
 <% end %>
-
-
-
