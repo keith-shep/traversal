@@ -9,11 +9,15 @@ const initMathQuill = () => {
   const steps = document.querySelectorAll('.step');
   steps.forEach((step) => MQ.StaticMath(step));
 
+  // const field = document.querySelector(".mq-empty");
+  // mathFieldSpan.addEventListener('click', () => {
+  //   console.log("hi");
+  // });
+
   const mathField = MQ.MathField(mathFieldSpan, {
     spaceBehavesLikeTab: true, // configurable
     handlers: {
       edit: function()  { // useful event handlers
-        // latexSpan.textContent = mathField.latex(); // simple API
         const input = document.querySelector('#step_latex');
         const latexStr = mathField.latex()
         input.value = latexStr
