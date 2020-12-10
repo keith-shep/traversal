@@ -6,24 +6,29 @@ Rails.application.routes.draw do
   get '/demo', to: 'pages#demo'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :equations, only: [ ] do
-    resources :steps, only: [ :create, :index]
+
+  # Equation < User
+  resources :users, only: [ ] do
+    resources :equations, only: [ :create, :new ]
   end
 
+  resources :equations, only: [ :show, :index ]
+  get "equations/:id", to: "equations#show", as: 'equation_show'
+  delete "equations/:id", to: "equations#destroy", as: 'delete_equation'
 
-  resources :equations, only: [:index]
-
+  # Step < Equation
+  resources :equations, only: [ ] do
+    resources :steps, only: [ :create, :index ]
+  end
 
   resources :steps, only: [ :edit, :update ]
   delete "steps/:id", to: "steps#destroy", as: 'delete_step'
 
-
-  resources :users, only: [ ] do
-    resources :equations, only: [ :create, :new]
+  # Comment < Step
+  resources :steps, only: [] do
+    resources :comments, only: [ :create, :new, :index ]
   end
 
-  resources :equations, only: [ :show ]
-  get "equations/:id", to: "equations#show", as: 'equation_show'
-  delete "equations/:id", to: "equations#destroy", as: 'delete_equation'
+  delete "comments/:id", to: "comments#destroy", as: 'delete_comment'
 
 end
