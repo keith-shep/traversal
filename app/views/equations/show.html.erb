@@ -2,7 +2,6 @@
 <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary" %>
   <h2><%= @equation.title %></h2>
 
-
   <% @equation.steps.each do |step| %>
     <div class="steps d-flex">
       <p>
@@ -21,8 +20,19 @@
   <%= simple_form_for [@equation, @step] do |f| %>
     <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
     <span class="form-control" id="mathquill-editable"></span>
-   <%= f.submit "Add step", class: "btn btn-primary mt-2 align-self-start" %>
+   <%= f.submit "Add step", class: "submit-btn btn btn-primary mt-2 align-self-start" %>
   <% end %>
 </div>
 
+
+<script>
+  const latex = document.querySelector("#mathquill-editable")
+  latex.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.querySelector(".submit-btn").click();
+    }
+  });
+</script>
 
