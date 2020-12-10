@@ -1,5 +1,4 @@
-
-<%= link_to 'Back to library', equations_path %>
+<%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary" %>
 
 <h2><%= @equation.title %></h2>
 
@@ -18,6 +17,6 @@
 
 <%= simple_form_for [@equation, @step] do |f| %>
   <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
-  <span class="w-100" id="mathquill-editable"></span>
- <%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
+  <span class="w-50 form-control" id="mathquill-editable"></span>
+ <%= f.submit "Save or Press Enter", class: "btn btn-primary mt-2 align-self-start" %>
 <% end %>
