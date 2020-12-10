@@ -1,3 +1,5 @@
+<%= link_to 'Show all comments', step_comments_path(@step) %>
+
 <%= simple_form_for [@step, @comment] do |f| %>
   <%= f.input :message, label: Comment %>
   <%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
