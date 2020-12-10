@@ -2,11 +2,12 @@
 
 <h2><%= @equation.title %></h2>
 
+<div data-controller="slideup">
 
 <% @equation.steps.each do |step| %>
   <div class="steps d-flex">
     <h4>
-      <div class="step">
+      <div class="step" data-slideup-target="source">
         <%= step.latex %>
       </div>
     </h4>
@@ -16,8 +17,12 @@
   </div>
 <% end %>
 
-<%= simple_form_for [@equation, @step] do |f| %>
+<%= simple_form_for [@equation, @step], id: 'step-form', data: { action: "submit->slideup#submit" } do |f| %>
+  <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
   <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
   <span class="w-50 form-control" id="mathquill-editable"></span>
- <%= f.submit "Save or Press Enter", class: "btn btn-primary mt-2 align-self-start" %>
+ <button class="btn btn-primary mt-2 align-self-start" data-action="click->slideup#submit">Save or Press Enter</button>
 <% end %>
+
+
+</div>

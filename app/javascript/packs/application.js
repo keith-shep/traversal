@@ -25,9 +25,9 @@ require("channels")
 // External imports
 import "bootstrap";
 
-import { initMathQuill } from './../plugins/init_mathquill.js'
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { initMathQuill } from './../plugins/init_mathquill.js'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
