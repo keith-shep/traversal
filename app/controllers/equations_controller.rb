@@ -29,7 +29,7 @@ class EquationsController < ApplicationController
   def destroy
     @equation = Equation.find(params[:id])
     @equation.destroy
-    redirect_to user_equations_path(@equation.user)
+    redirect_to equations_path
   end
 
 
