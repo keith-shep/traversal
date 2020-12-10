@@ -1,3 +1,4 @@
+
 puts ""
 
 puts 'Cleaning db...'
@@ -75,9 +76,9 @@ eq3 = Equation.new(
 eq3.user = user1
 eq3.save
 
-s1 = Step.new(latex:"3^{2n}\times 15^{3n}\div 5^n")
-s2 = Step.new(latex:"3^{2n}\times 3^{3n}\times 5^{3n}\div 5^n")
-s3 = Step.new(latex:"3^{5n}\times 5^{2n}")
+s1 = Step.new(latex:"3^{2n}\\times 15^{3n}\\div 5^n")
+s2 = Step.new(latex:"3^{2n}\\times 3^{3n}\\times 5^{3n}\\div 5^n")
+s3 = Step.new(latex:"3^{5n}\\times 5^{2n}")
 
 s1.equation = eq3
 s2.equation = eq3
@@ -99,9 +100,9 @@ eq4 = Equation.new(
 eq4.user = user1
 eq4.save
 
-s1 = Step.new(latex:"\sqrt{8}\div \sqrt{2}")
-s2 = Step.new(latex:"\sqrt{\frac{8}{2}}")
-s3 = Step.new(latex:"\sqrt{4}")
+s1 = Step.new(latex:"\\sqrt{8}\\div \\sqrt{2}")
+s2 = Step.new(latex:"\\sqrt{\\frac{8}{2}}")
+s3 = Step.new(latex:"\\sqrt{4}")
 s4 = Step.new(latex:"2")
 
 s1.equation = eq4
@@ -126,9 +127,9 @@ eq5.user = user1
 eq5.save
 
 
-s1 = Step.new(latex:"\left(\sqrt{3}+3\sqrt{2}\right)\left(\sqrt{3}-3\sqrt{2}\right)")
-s2 = Step.new(latex:"\left(\sqrt{3}\right)^2-9\left(\sqrt{2}\right)^2")
-s3 = Step.new(latex:"3-9\left(2\right)")
+s1 = Step.new(latex:"\\left(\\sqrt{3}+3\\sqrt{2}\\right)\\left(\\sqrt{3}-3\\sqrt{2}\\right)")
+s2 = Step.new(latex:"\\left(\\sqrt{3}\\right)^2-9\\left(\\sqrt{2}\\right)^2")
+s3 = Step.new(latex:"3-9\\left(2\\right)")
 s4 = Step.new(latex:"-19")
 
 s1.equation = eq5

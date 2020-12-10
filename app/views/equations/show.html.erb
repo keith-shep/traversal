@@ -1,8 +1,9 @@
-<%= link_to 'Back to library', user_equations_path(current_user) %>
 
+<%= link_to 'Back to library', equations_path(current_user) %>
 
 <h2><%= @equation.title %></h2>
 
+<<<<<<< HEAD
 <% @equation.steps.each_with_index do |step, index| %>
   <% if index == @equation.steps.size - 1 %>
     <h4 class="slide_up"><%= step.latex %></h4>
@@ -20,3 +21,25 @@
 <% end %>
 
 
+=======
+<% @equation.steps.each do |step| %>
+  <div class="steps d-flex">
+    <h4>
+      <div class="step">
+        <%= step.latex %>
+      </div>
+    </h4>
+    <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted mx-2"%>
+    <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
+  </div>
+<% end %>
+
+<%= simple_form_for [@equation, @step] do |f| %>
+  <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
+  <span class="w-100" id="mathquill-editable"></span>
+ <%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
+<% end %>
+
+
+
+>>>>>>> origin
