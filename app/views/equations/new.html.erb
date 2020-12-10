@@ -1,6 +1,6 @@
-<%= link_to 'To library', user_equations_path(current_user) %>
+<%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary" %>
 
 <%= simple_form_for [current_user, @equation] do |f| %>
-  <%= f.input :title %>
-  <%= f.submit "Save", class: "btn btn-primary" %>
+  <%= f.input :title, placeholder: "Algebra is fun! (sorta)" %>
+  <%= f.submit "Start equation-ing", class: "btn btn-primary" %>
 <% end %>
