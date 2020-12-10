@@ -3,25 +3,7 @@
 
 <h2><%= @equation.title %></h2>
 
-<<<<<<< HEAD
-<% @equation.steps.each_with_index do |step, index| %>
-  <% if index == @equation.steps.size - 1 %>
-    <h4 class="slide_up"><%= step.latex %></h4>
-  <% else %>
-    <h4><%= step.latex %></h4>
-  <% end %>
-<%= link_to 'Edit', edit_step_path(step) %>
-<%= link_to 'Delete', delete_step_path(step), method: :delete %>
-<% end %>
 
-
-<%= simple_form_for [@equation, @step] do |f| %>
-<%= f.input :latex%>
-<%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
-<% end %>
-
-
-=======
 <% @equation.steps.each do |step| %>
   <div class="steps d-flex">
     <h4>
@@ -39,7 +21,3 @@
   <span class="w-100" id="mathquill-editable"></span>
  <%= f.submit "Save or Press Enter", class: "btn btn-primary" %>
 <% end %>
-
-
-
->>>>>>> origin
