@@ -2,6 +2,7 @@
 <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary" %>
   <h2><%= @equation.title %></h2>
 
+
   <% @equation.steps.each do |step| %>
     <div class="steps d-flex">
       <p>
@@ -11,8 +12,8 @@
       </p>
       <div class="icons">
         <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted ml-3"%>
-        <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted " %>
-        <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, new_step_comment_path(step), class:"text-muted " %>
+        <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
+        <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, new_step_comment_path(step), class:"text-muted" %>
       </div>
     </div>
   <% end %>
