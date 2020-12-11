@@ -10,7 +10,6 @@ export default class extends Controller {
 
   submit(event) {
     event.preventDefault();
-    console.log('Hello');
 
     const equationId = Number.parseInt(this.equationIdTarget.value, 10);
     const latexValue = document.getElementById('step_latex').value;
@@ -29,7 +28,9 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         // handle JSON response from server
-        console.log(data);
+      console.log(data);
       });
+      const newStep = document.querySelector(".steps");
+      newStep.insertAdjacentHTML("beforeend", "<h4>latexValue</h4>");
   }
 }

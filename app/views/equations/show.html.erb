@@ -4,7 +4,7 @@
 
 <div data-controller="slideup">
 
-<% @equation.steps.each do |step| %>
+  <% @equation.steps.each do |step| %>
   <div class="steps d-flex">
     <h4>
       <div class="step" data-slideup-target="source">
@@ -13,16 +13,15 @@
     </h4>
     <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted mx-2"%>
     <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted mx-2" %>
-    <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, new_step_comment_path(step), class:"text-muted mx-2" %>
+    <%= link_to '<i class="far fa-comment-dots"></i></i>' .html_safe, new_step_comment_path(step), class:"text-muted mx-2" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= simple_form_for [@equation, @step], id: 'step-form', data: { action: "submit->slideup#submit" } do |f| %>
+  <%= simple_form_for [@equation, @step], id: 'step-form', data: { action: "submit->slideup#submit" } do |f| %>
   <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
   <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
   <span class="w-50 form-control" id="mathquill-editable"></span>
- <button class="btn btn-primary mt-2 align-self-start">Save or Press Enter</button>
-<% end %>
-
+  <button class="btn btn-primary mt-2 align-self-start">Save or Press Enter</button>
+  <% end %>
 
 </div>
