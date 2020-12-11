@@ -9,11 +9,6 @@ const initMathQuill = () => {
   const steps = document.querySelectorAll('.step');
   steps.forEach((step) => MQ.StaticMath(step));
 
-  // const field = document.querySelector(".mq-empty");
-  // mathFieldSpan.addEventListener('click', () => {
-  //   console.log("hi");
-  // });
-
   const mathField = MQ.MathField(mathFieldSpan, {
     spaceBehavesLikeTab: true, // configurable
     handlers: {

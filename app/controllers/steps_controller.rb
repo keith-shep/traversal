@@ -11,9 +11,11 @@ class StepsController < ApplicationController
     @step = Step.new(step_params)
     @step.equation = @equation
     if @step.save
-      redirect_to equation_path(@equation)
+      # redirect_to equation_path(@equation)
+      render json: { success: true }
     else
-      render :new # should render error message
+      # render :new # should render error message
+      render json: { success: false }
     end
   end
 
