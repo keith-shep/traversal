@@ -34,3 +34,6 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initMathQuill();
 });
+
+import "controllers"
+import "animate.css"
