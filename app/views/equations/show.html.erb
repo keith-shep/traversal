@@ -1,3 +1,18 @@
+
+<div class="d-flex">
+
+<div class="card text-secondary" style="width: 12rem;">
+  <div class="card-header">
+    Quick operator reference
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">^ - Power</li>
+    <li class="list-group-item">/ - Fraction</li>
+    <li class="list-group-item">\sqrt - Square root</li>
+     <li class="list-group-item">/ - Integration</li>
+  </ul>
+</div>
+
 <div class="container w-50 border shadow-sm px-3 py-3 bg-white">
 <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary" %>
   <h2><%= @equation.title %></h2>
@@ -27,6 +42,11 @@
   <% end %>
 
 </div>
+
+
+</div>
+
+
 
 <script>
   const latex = document.querySelector("#mathquill-editable")
