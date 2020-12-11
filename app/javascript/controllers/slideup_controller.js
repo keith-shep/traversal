@@ -1,5 +1,6 @@
 import { Controller } from "stimulus";
 import { fetchWithToken } from "../utils/fetch_with_token";
+import MathQuill from 'mathquill';
 
 export default class extends Controller {
   static targets = [ 'source', 'equationId'];
@@ -13,6 +14,7 @@ export default class extends Controller {
 
     const equationId = Number.parseInt(this.equationIdTarget.value, 10);
     const latexValue = document.getElementById('step_latex').value;
+    const MQ = MathQuill.getInterface(2);
 
     console.log(latexValue);
     console.log(JSON.stringify({ step: { latex: latexValue }}));
@@ -28,9 +30,18 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         // handle JSON response from server
-      console.log(data);
+        console.log(data);
+        const steps = document.querySelector(".steps");
+
+        let stepHtml = `
+          <div class="step text-dark new-step" data-slideup-target="source">
+            ${latexValue}
+          </div>`
+        steps.insertAdjacentHTML("beforeend", stepHtml);
+
+        let newStep = document.querySelector('.new-step');
+        newStep.classList.remove("new-step");
+        MQ.StaticMath(newStep);
       });
-      const newStep = document.querySelector(".steps");
-      newStep.insertAdjacentHTML("beforeend", "<h4>latexValue</h4>");
   }
 }

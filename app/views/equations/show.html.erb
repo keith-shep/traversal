@@ -4,20 +4,18 @@
 
 <div data-controller="slideup">
 
-  <% @equation.steps.each do |step| %>
-  <div class="steps d-flex">
-    <p>
-      <div class="step text-dark" data-slideup-target="source">
-        <%= step.latex %>
-      </div>
-    </p>
-    <div class="icons ml-2">
-      <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
-      <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
-      <%= link_to '<i class="far fa-comment-dots"></i></i>' .html_safe, new_step_comment_path(step), class:"text-muted" %>
-    </div>
+  <div class="steps d-flex flex-column">
+    <% @equation.steps.each do |step| %>
+        <div class="step text-dark" data-slideup-target="source">
+          <%= step.latex %>
+        </div>
+        <div class="icons ml-2">
+          <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
+          <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
+          <%= link_to '<i class="far fa-comment-dots"></i></i>' .html_safe, new_step_comment_path(step), class:"text-muted" %>
+        </div>
+    <% end %>
   </div>
-  <% end %>
 
   <%= simple_form_for [@equation, @step], id: 'step-form', data: { action: "submit->slideup#submit" } do |f| %>
   <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
