@@ -1,49 +1,54 @@
 <div class="d-flex">
-
-<div class="card text-secondary" style="width: 12rem;">
-  <div class="card-header">
-    Quick operator reference
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">^ - Power</li>
-    <li class="list-group-item">/ - Fraction</li>
-    <li class="list-group-item">\sqrt - Square root</li>
-     <li class="list-group-item">/ - Integration</li>
-  </ul>
-</div>
-
-<div class="container w-50 border shadow-sm px-3 py-3 bg-white">
-<%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary" %>
-  <h2><%= @equation.title %></h2>
-
-<div data-controller="slideup">
-
-  <div class="steps d-flex flex-column">
-    <% @equation.steps.each do |step| %>
-    <div class="line d-flex">
-      <div class="step text-dark" data-slideup-target="source">
-        <%= step.latex %>
-      </div>
-      <div class="icons ml-2">
-        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
-        <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
-        <%= link_to '<i class="far fa-comment-dots"></i></i>' .html_safe, new_step_comment_path(step), class:"text-muted" %>
-      </div>
+  <div class="card text-secondary" style="width: 12rem;">
+  <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary mb-2" %>
+    <div class="card-header">
+      Quick operator reference
     </div>
-    <% end %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">^ - Power</li>
+      <li class="list-group-item">/ - Fraction</li>
+      <li class="list-group-item">\sqrt - Square root</li>
+       <li class="list-group-item">/ - Integration</li>
+    </ul>
   </div>
 
-  <%= simple_form_for [@equation, @step], id: 'step-form', data: { action: "submit->slideup#submit" } do |f| %>
-  <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
-  <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
-  <span class="form-control" id="mathquill-editable"></span>
-  <button class="submit-btn btn btn-primary mt-2 align-self-start">Add step</button>
-  <% end %>
+  <div class="container w-50 border shadow-sm px-3 py-3 bg-white">
 
+    <h2><%= @equation.title %></h2>
+    <div data-controller="slideup">
+
+      <div class="steps d-flex flex-column ">
+        <% @equation.steps.each do |step| %>
+        <div class="line d-flex">
+          <div class="step text-dark" data-slideup-target="source">
+            <%= step.latex %>
+          </div>
+          <div class="icons ml-2">
+            <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
+            <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
+            <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, new_step_comment_path(step), class:"text-muted" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+      <%= simple_form_for [@equation, @step], id: 'step-form', data: { action: "submit->slideup#submit" } do |f| %>
+        <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
+        <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
+        <span class="form-control" id="mathquill-editable"></span>
+        <div class="clickable d-flex justify-content-between">
+          <button class="submit-btn btn btn-primary mt-2 align-self-start">Add step</button>
+          <h2>
+            <i class="fas fa-share-alt-square text-muted"></i>
+          </h2>
+
+        </div>
+      <% end %>
+    </div>
+
+  </div>
 </div>
 
-
-</div>
 
 
 
@@ -56,5 +61,5 @@
       document.querySelector(".submit-btn").click();
     }
   });
-
 </script>
+
