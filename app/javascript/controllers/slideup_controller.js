@@ -39,9 +39,9 @@ export default class extends Controller {
             ${latexValue}
           </div>
           <div class="icons ml-2">
-            <i class="fas fa-edit text-muted"></i>
-            <i class="fas fa-minus-circle text-muted"></i>
-            <i class="far fa-comment-dots text-muted"></i></i>
+            <a class="text-muted" href="/steps/353/edit"><i class="fas fa-edit"></i></a>
+            <a class="text-muted" data-remote="true" rel="nofollow" data-method="delete" href="/steps/353"><i class="fas fa-minus-circle"></i></a>
+            <a class="text-muted" href="/steps/353/comments/new"><i class="far fa-comment-dots"></i></i></a>
           </div>
         </div>
         `
