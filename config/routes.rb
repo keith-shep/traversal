@@ -11,10 +11,11 @@ Rails.application.routes.draw do
 
   # Equation < User
   resources :users, only: [ ] do
-    resources :equations, only: [ :create, :new ]
+    resources :equations, only: [ :new ]
   end
 
-  resources :equations, only: [ :show, :index ]
+  resources :equations, only: [ :show, :index]
+  post "equations/", to: "equations#create", as: 'equation_create'
   get "equations/:id", to: "equations#show", as: 'equation_show'
   delete "equations/:id", to: "equations#destroy", as: 'delete_equation'
 

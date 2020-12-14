@@ -1,10 +1,10 @@
 class EquationsController < ApplicationController
 
   def create
-    # @equation = Equation.new()
-    # @equation.title = 'My cool equation'
     @equation = Equation.new()
     @user = current_user
+    @equation.user = @user
+    @equation.title = "Untitled Equation"
     if @equation.save
       redirect_to equation_path(@equation)
     else
@@ -18,9 +18,6 @@ class EquationsController < ApplicationController
 
   def index
     @equations = Equation.all
-    # @equation = Equation.new()
-    # @equation.title = 'My cool equation'
-    # @equation.user = current_user
   end
 
   def show
