@@ -21,7 +21,7 @@
   <div class="steps d-flex flex-column">
     <% @equation.steps.each do |step| %>
     <div class="line d-flex">
-      <div class="step text-dark" data-slideup-target="source">
+      <div class="step text-dark" data-slideup-target="source" data-tippy-id=<%= step.id %>>
         <%= step.latex %>
       </div>
       <div class="icons ml-2">
