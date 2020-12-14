@@ -1,9 +1,10 @@
 class EquationsController < ApplicationController
 
   def create
-    @equation = Equation.new(equation_params)
-    @user = User.find(params[:user_id])
+    @equation = Equation.new()
+    @user = current_user
     @equation.user = @user
+    @equation.title = "Untitled Equation"
     if @equation.save
       redirect_to equation_path(@equation)
     else
@@ -15,7 +16,6 @@ class EquationsController < ApplicationController
     @equation = Equation.new
   end
 
-
   def index
     @equations = Equation.all
   end
@@ -23,7 +23,6 @@ class EquationsController < ApplicationController
   def show
     @equation = Equation.find(params[:id])
     @step = Step.new
-
   end
 
   def destroy
@@ -31,7 +30,6 @@ class EquationsController < ApplicationController
     @equation.destroy
     redirect_to equations_path(@equation)
   end
-
 
   private
 
