@@ -25,6 +25,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import 'share-buttons/dist/share-buttons.js'
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';

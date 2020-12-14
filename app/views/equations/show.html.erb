@@ -12,7 +12,7 @@
     </ul>
   </div>
 
-  <div class="container w-50 border shadow-sm px-3 py-3 bg-white">
+  <div class="container w-50 border shadow-sm px-3 py-3 bg-white align-self-start">
 
     <h2><%= @equation.title %></h2>
     <div data-controller="slideup">
@@ -36,11 +36,21 @@
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
         <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
         <span class="form-control" id="mathquill-editable"></span>
-        <div class="clickable d-flex justify-content-between">
-          <button class="submit-btn btn btn-primary mt-2 align-self-start">Add step</button>
-          <h2>
-            <i class="fas fa-share-alt-square text-muted"></i>
-          </h2>
+        <button class="submit-btn btn btn-primary mt-2 align-self-start">Add step</button>
+          <div class="d-flex justify-content-end">
+          <p>Share</p>
+
+          <div class="share-btn"
+            data-url='<%= request.original_url %>'
+            data-title="Traversal"
+            data-desc="Web Equation"
+            >
+              <a class="btn-whatsapp" data-id="wa"><i class="fab fa-whatsapp"></i> </a>
+              <a class="btn-facebook" data-id="fb"><i class="fab fa-facebook-square"></i> </a>
+              <a class="btn-twitter" data-id="tw"><i class="fab fa-twitter"></i> </a>
+              <a class="btn-telegram" data-id="tg"><i class="fab fa-telegram"></i> </a>
+              <a class="btn-mail" data-id="mail"><i class="fas fa-at"></i> </a>
+          </div>
 
         </div>
       <% end %>
@@ -50,6 +60,7 @@
 </div>
 
 
+<p>  </p>
 
 
 <script>
