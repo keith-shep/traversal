@@ -6551,6 +6551,11 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
+share-buttons@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/share-buttons/-/share-buttons-1.6.1.tgz#cbcbc9dbff06a79921ca9dafda89fe29910df025"
+  integrity sha512-Qr6XsB/BiVu2oMqtMSGJ7B1Kfrqf+1hrSLgSZ2qtFNJfYZSfH9ZGhkyuQIwE9RXr0mGBcZDhPdc3pSuLCJghRw==
+
 shebang-command@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
