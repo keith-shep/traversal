@@ -43,3 +43,5 @@ document.addEventListener('turbolinks:load', () => {
 import "controllers"
 
 import "animate.css"
+
+import { hideEditForm } from './../utils/edit_hide.js'

@@ -25,6 +25,17 @@ class EquationsController < ApplicationController
     @step = Step.new
   end
 
+  def edit
+    @equation = Equation.find(params[:id])
+  end
+
+  def update
+    @equation = Equation.find(params[:id])
+    @equation.update(equation_params)
+    redirect_to equations_path(@equation)
+  end
+
+
   def destroy
     @equation = Equation.find(params[:id])
     @equation.destroy
