@@ -9,16 +9,12 @@ export default class extends Controller {
     console.log(this.sourceTarget);
   }
 
-  submit(event) {
-    event.preventDefault();
-
+  sendStepToServer() {
     const equationId = Number.parseInt(this.equationIdTarget.value, 10);
     const latexValue = document.getElementById('step_latex').value;
     const MQ = MathQuill.getInterface(2);
-
-    console.log(latexValue);
-    console.log(JSON.stringify({ step: { latex: latexValue }}));
-
+    // console.log(latexValue);
+    // console.log(JSON.stringify({ step: { latex: latexValue }}));
     fetchWithToken(`/equations/${equationId}/steps`, {
       method: "POST",
       headers: {
@@ -26,9 +22,7 @@ export default class extends Controller {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ step: { latex: latexValue }})
-    })
-      .then(response => response.json())
-      .then((data) => {
+    }).then(response => response.json()).then((data) => {
         // handle JSON response from server
         console.log(data);
         const steps = document.querySelector(".steps");
@@ -52,5 +46,18 @@ export default class extends Controller {
         newStep.classList.remove("new-step");
         MQ.StaticMath(newStep);
       });
+  }
+
+  submit(event) {
+      event.preventDefault();
+      this.sendStepToServer();
+  }
+
+
+  submitWithEnter(e) {
+    console.log(e.keyCode)
+    if (e.keyCode == 13) {
+      this.sendStepToServer();
+    }
   }
 }
