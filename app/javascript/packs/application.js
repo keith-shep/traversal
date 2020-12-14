@@ -36,7 +36,7 @@ import { loadPopOvers } from './../plugins/init_tippy_in_equations_page.js';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  // initMathQuill();
+  initMathQuill();
   loadPopOvers();
 });
 
