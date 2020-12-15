@@ -25,18 +25,19 @@
           </div>
           <div class="icons ml-2">
             <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
-            <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, class:"text-muted" %>
+            <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote:true, class:"text-muted", id:"#{step.id}" %>
             <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, new_step_comment_path(step), class:"text-muted" %>
           </div>
         </div>
         <% end %>
       </div>
 
-      <%= simple_form_for [@equation, @step], id: 'step-form', data: { action: "submit->slideup#submit" } do |f| %>
+      <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
         <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
-        <span class="form-control" id="mathquill-editable"></span>
-        <button class="submit-btn btn btn-primary mt-2 align-self-start">Add step</button>
+        <span data-action="keyup->slideup#submitWithEnter" class="form-control" id="mathquill-editable"></span>
+        <%= f.submit "Add Step", class: "submit-btn btn btn-primary mt-2 align-self-start" %>
+
           <div class="d-flex justify-content-end">
           <p>Share</p>
 
@@ -59,18 +60,14 @@
   </div>
 </div>
 
-
-<p>  </p>
-
-
-<script>
-  const latex = document.querySelector("#mathquill-editable")
-  latex.addEventListener("keyup", function(event) {
+<!-- <script>
+  const form = document.querySelector("#new_step")
+  window.addEventListener("keyup", function(event) {
     // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 13) {
-      event.preventDefault();
-      document.querySelector(".submit-btn").click();
+      event.submitWithEnterpreventDefault();
+      form.submit();
     }
   });
-</script>
+</script> -->
 
