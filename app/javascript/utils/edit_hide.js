@@ -1,13 +1,20 @@
 
 
 const hideEditForm = () => {
-  const Form = Document.getElementbyId("post_link");
 
-  const callback = () => {
-    console.log("Hi I'm doing fine!");
+  const postLinks = document.querySelectorAll(".post_link");
+
+  const callback = (e) => {
+    e.preventDefault();
+    const equationId = e.currentTarget.dataset.equation;
+    const editForm = document.getElementById(`edit-equation-${equationId}`);
+    editForm.classList.toggle('d-none');
   }
 
-  Form.addEventListener("click", callback)
+  postLinks.forEach((postLink) => {
+    postLink.addEventListener("click", callback);
+  });
+
 
 }
 

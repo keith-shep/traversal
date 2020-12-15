@@ -6,11 +6,27 @@
   <div class="card">
     <% @equations.reverse_each do |equation| %>
     <div class="card-body border">
-      <div class="d-flex justify-content-between align-items-center">
-        <h3 class="card-title mr-2"><%= link_to equation.title, equation_path(equation) %></h3>
-        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_equation_path(equation), class:"text-muted mr-auto pb-3", id: "post_link"%>
-        <h6 class="text-muted">2 days ago</h6>
+      <div class="d-flex align-items-center">
+        <h3 class="card-title mr-2 py-2"><%= link_to equation.title, equation_path(equation) %></h3>
+        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_equation_path(equation), class:"text-muted pb-3 mr-3 post_link", data: { equation: equation.id } %>
+
+        <div class="row d-none title_edit" id="edit-equation-<%= equation.id %>">
+          <div class="col">
+            <%= simple_form_for equation do |f| %>
+              <%= f.input :title, label: false %>
+          </div>
+          <div class="col">
+              <button type = "submit" class= "btn border-success text-success"><i class="fas fa-check"></i></button>
+          </div>
+          <% end %>
+        </div>
+
+        <div class="text-muted ml-auto">
+        <h6 >2 days ago</h6>
+        </div>
+
       </div>
+
       <div class="d-flex justify-content-between align-items-center">
         <% t = equation.created_at + 8.hours %>
       <small class="card-text text-muted"><%= t.strftime("Created %A, %d %B %Y at %I:%M %p") %></small>

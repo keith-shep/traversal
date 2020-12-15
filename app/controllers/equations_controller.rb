@@ -17,7 +17,7 @@ class EquationsController < ApplicationController
   end
 
   def index
-    @equations = Equation.all
+    @equations = Equation.order(:created_at)
   end
 
   def show
