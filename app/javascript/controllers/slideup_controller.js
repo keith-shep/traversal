@@ -13,8 +13,7 @@ export default class extends Controller {
     const equationId = Number.parseInt(this.equationIdTarget.value, 10);
     const latexValue = document.getElementById('step_latex').value;
     const MQ = MathQuill.getInterface(2);
-    // console.log(latexValue);
-    // console.log(JSON.stringify({ step: { latex: latexValue }}));
+
     fetchWithToken(`/equations/${equationId}/steps`, {
       method: "POST",
       headers: {
@@ -33,9 +32,9 @@ export default class extends Controller {
             ${latexValue}
           </div>
           <div class="icons ml-2">
-            <a class="text-muted" href="/steps/353/edit"><i class="fas fa-edit"></i></a>
-            <a class="text-muted" data-remote="true" rel="nofollow" data-method="delete" href="/steps/353"><i class="fas fa-minus-circle"></i></a>
-            <a class="text-muted" href="/steps/353/comments/new"><i class="far fa-comment-dots"></i></i></a>
+            <a class="text-muted" href="/steps/${data.stepId}/edit"><i class="fas fa-edit"></i></a>
+            <a class="text-muted" data-remote="true" rel="nofollow" data-method="delete" href="/steps/${data.stepId}"><i class="fas fa-minus-circle"></i></a>
+            <a class="text-muted" href="/steps/${data.stepId}/comments/new"><i class="far fa-comment-dots"></i></i></a>
           </div>
         </div>
         `
@@ -53,9 +52,8 @@ export default class extends Controller {
       this.sendStepToServer();
   }
 
-
   submitWithEnter(e) {
-    console.log(e.keyCode)
+    // console.log(e.keyCode)
     if (e.keyCode == 13) {
       this.sendStepToServer();
     }
