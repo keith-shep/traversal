@@ -32,7 +32,8 @@ class EquationsController < ApplicationController
   def update
     @equation = Equation.find(params[:id])
     @equation.update(equation_params)
-    redirect_to equations_path(@equation)
+    # redirect_to equations_path(@equation)
+    render json: @equation
   end
 
 
