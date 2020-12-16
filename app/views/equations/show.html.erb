@@ -14,23 +14,32 @@
 
   <div class="container w-50 border shadow-sm px-3 py-3 bg-white align-self-start">
 
-    <h2><%= @equation.title %></h2>
-    <div data-controller="slideup">
 
-      <div class="steps d-flex flex-column ">
-        <% @equation.steps.each do |step| %>
-        <div class="line d-flex">
-          <div class="step text-dark" data-slideup-target="source">
-            <%= step.latex %>
+  <div data-controller="slideup">
+    <div class="steps d-flex flex-column">
+      <% @equation.steps.each do |step| %>
+      <div class="line d-flex">
+        <template data-step-id=<%= step.id  %>>
+          <div class="step-comments">
+            <% step.comments.each do |comment| %>
+            <ul style="list-style: none">
+              <li><%= comment.message %></li>
+            </ul>
+            <% end %>
           </div>
-          <div class="icons ml-2">
-            <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
-            <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote:true, class:"text-muted", id:"#{step.id}" %>
-            <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, new_step_comment_path(step), class:"text-muted" %>
-          </div>
+        </template>
+        <div class="step text-dark" data-slideup-target="source" data-step-id="<%= step.id %>">
+          <%= step.latex %>
         </div>
-        <% end %>
+        <div class="icons ml-2">
+          <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
+          <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote: true ,class:"text-muted", id:"#{step.id}"%>
+          <%= link_to '<i class="far fa-comment-dots"></i></i>' .html_safe, step_comments_path(step), class:"text-muted"%>
+        </div>
       </div>
+      <% end %>
+  </div>
+
 
       <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
