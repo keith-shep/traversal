@@ -1,6 +1,6 @@
 <div class="d-flex">
   <div class="card text-secondary" style="width: 12rem;">
-  <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary mb-2" %>
+    <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary mb-2" %>
     <div class="card-header">
       Quick operator reference
     </div>
@@ -8,7 +8,7 @@
       <li class="list-group-item">^ - Power</li>
       <li class="list-group-item">/ - Fraction</li>
       <li class="list-group-item">\sqrt - Square root</li>
-       <li class="list-group-item">/ - Integration</li>
+      <li class="list-group-item">/ - Integration</li>
     </ul>
   </div>
 
@@ -18,44 +18,53 @@
     <div data-controller="slideup">
 
 
-  <div class="steps d-flex flex-column">
-    <% @equation.steps.each do |step| %>
-    <div class="line d-flex">
-      <div class="step text-dark" data-slideup-target="source" data-tippy-id=<%= step.id %>>
-        <%= step.latex %>
+      <div class="steps d-flex flex-column">
+        <% @equation.steps.each do |step| %>
+          <div class="line d-flex">
+            <template data-step-id=<%= step.id  %> >
+              <div class="step-comments">
+                <% step.comments.each do |comment| %>
+                  <ul style="list-style: none">
+                    <li><%= comment.message %></li>
+                  </ul>
+                <% end %>
+              </div>
+            </template>
+            <div class="step text-dark" data-slideup-target="source" data-tippy-id=<%= step.id %>>
+              <%= step.latex %>
+            </div>
+            <div class="icons ml-2">
+              <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
+              <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote:true, class:"text-muted", id:"#{step.id}" %>
+              <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, step_comments_path(step), class:"text-muted" %>
+            </div>
           </div>
-          <div class="icons ml-2">
-            <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
-            <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote:true, class:"text-muted", id:"#{step.id}" %>
-            <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, new_step_comment_path(step), class:"text-muted" %>
-          </div>
-        </div>
         <% end %>
 
       </div>
 
-      <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
+        <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
         <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
         <span data-action="keyup->slideup#submitWithEnter" class="form-control" id="mathquill-editable"></span>
         <%= f.submit "Add Step", class: "submit-btn btn btn-primary mt-2 align-self-start" %>
 
-          <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end">
           <p>Share</p>
 
           <div class="share-btn"
-            data-url='<%= request.original_url %>'
-            data-title="Traversal"
-            data-desc="Web Equation"
-            >
-              <a class="btn-whatsapp" data-id="wa"><i class="fab fa-whatsapp"></i> </a>
-              <a class="btn-facebook" data-id="fb"><i class="fab fa-facebook-square"></i> </a>
-              <a class="btn-twitter" data-id="tw"><i class="fab fa-twitter"></i> </a>
-              <a class="btn-telegram" data-id="tg"><i class="fab fa-telegram"></i> </a>
-              <a class="btn-mail" data-id="mail"><i class="fas fa-at"></i> </a>
-          </div>
-
+          data-url='<%= request.original_url %>'
+          data-title="Traversal"
+          data-desc="Web Equation"
+          >
+          <a class="btn-whatsapp" data-id="wa"><i class="fab fa-whatsapp"></i> </a>
+          <a class="btn-facebook" data-id="fb"><i class="fab fa-facebook-square"></i> </a>
+          <a class="btn-twitter" data-id="tw"><i class="fab fa-twitter"></i> </a>
+          <a class="btn-telegram" data-id="tg"><i class="fab fa-telegram"></i> </a>
+          <a class="btn-mail" data-id="mail"><i class="fas fa-at"></i> </a>
         </div>
+
+      </div>
       <% end %>
     </div>
 
