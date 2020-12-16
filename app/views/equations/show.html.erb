@@ -1,23 +1,13 @@
 <div class="d-flex">
-  <div class="card text-secondary" style="width: 12rem;">
-    <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-outline-primary mb-2" %>
-    <div class="card-header">
-      Quick operator reference
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">^ - Power</li>
-      <li class="list-group-item">/ - Fraction</li>
-      <li class="list-group-item">\sqrt - Square root</li>
-      <li class="list-group-item">/ - Integration</li>
-    </ul>
+  <div class="card text-secondary border-0 mr-4 bg-transparent" style="width: 12rem;">
+    <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-transparent text-muted text-left" %>
+    <%= render 'collapsable_cheatsheet' %>
   </div>
 
-  <div class="container w-50 border shadow-sm px-3 py-3 bg-white align-self-start">
+  <div class="container w-50 border shadow-sm px-3 py-3 ml-5 bg-white align-self-start">
 
     <h2><%= @equation.title %></h2>
     <div data-controller="slideup">
-
-
       <div class="steps d-flex flex-column">
         <% @equation.steps.each do |step| %>
           <div class="line d-flex">
@@ -36,6 +26,7 @@
             <div class="icons ml-2 d-flex">
               <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
               <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote:true, class:"text-muted", id:"#{step.id}" %>
+
 
                 <div class="d-flex" data-controller="add-comment">
                     <div class="d-flex">
@@ -60,7 +51,13 @@
           </div>
         <% end %>
 
+
+              <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, step_comments_path(step), class:"text-muted" %>
+            </div>
+
       </div>
+        <% end %>
+    </div>
 
         <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
@@ -81,14 +78,12 @@
           <a class="btn-twitter" data-id="tw"><i class="fab fa-twitter"></i> </a>
           <a class="btn-telegram" data-id="tg"><i class="fab fa-telegram"></i> </a>
           <a class="btn-mail" data-id="mail"><i class="fas fa-at"></i> </a>
+          </div>
         </div>
-
-      </div>
       <% end %>
-    </div>
-
   </div>
 </div>
+
 
 <!-- <script>
   const form = document.querySelector("#new_step")
