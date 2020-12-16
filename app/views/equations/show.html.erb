@@ -23,11 +23,38 @@
             <div class="step text-dark" data-slideup-target="source" data-tippy-id=<%= step.id %>>
               <%= step.latex %>
             </div>
-            <div class="icons ml-2">
+            <div class="icons ml-2 d-flex">
               <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
               <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote:true, class:"text-muted", id:"#{step.id}" %>
+
+
+                <div class="d-flex" data-controller="add-comment">
+                    <div class="d-flex">
+
+                      <%= link_to '<i class="far fa-comment-dots"></i>'.html_safe, new_step_comment_path(step), class:"text-muted pb-3 mr-3 post_link", data: { step: step.id, 'add-comment-target': 'step' } %>
+                      <% @comment.step = step %>
+
+                      <%= simple_form_for([step, @comment], data: { action: 'submit->add-comment#submit' }, url: new_step_comment_path(step)) do |f| %>
+                        <div class="row title_edit" id="edit-equation-<%= step.id %>" data-add-comment-target="toggleForm">
+                          <div class="col">
+                            <%= f.input :message, placeholder:"Add comment", label: false, input_html: { data: { 'add-comment-target': 'newTitle' } } %>
+                          </div>
+                          <div class="col">
+                            <button type="submit" class="btn border-success text-success"><i class="fas fa-check"></i></button>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+
+                </div>
+              </div>
+          </div>
+        <% end %>
+
+
               <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, step_comments_path(step), class:"text-muted" %>
             </div>
+
       </div>
         <% end %>
     </div>

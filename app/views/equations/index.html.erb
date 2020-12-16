@@ -1,8 +1,6 @@
 <h1>Library</h1>
 <%= link_to '+ New equation', equation_create_path, method: :post, class:"btn btn-primary mb-2" %>
 
-
-
   <div class="card">
     <% @equations.reverse_each do |equation| %>
     <div data-controller="edit-title">

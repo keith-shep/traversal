@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     resources :comments, only: [ :create, :new, :index ]
   end
 
+
+  post "/steps/:step_id/comments", to: "comments#create", as: 'create_comment'
   delete "comments/:id", to: "comments#destroy", as: 'delete_comment'
 
 end
