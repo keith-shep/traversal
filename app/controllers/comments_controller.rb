@@ -15,9 +15,10 @@ class CommentsController < ApplicationController
     @comment.step = @step
     @comment.user = current_user
     if @comment.save
-      redirect_to step_comments_path(@step)
+      render json: { success: true, comment: @comment }
+      # redirect_to step_comments_path(@step)
     else
-      render :new
+      render json: { success: false }
     end
   end
 

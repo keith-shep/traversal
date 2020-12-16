@@ -3,7 +3,7 @@ import { fetchWithToken } from "../utils/fetch_with_token";
 
 
 export default class extends Controller {
-  static targets = [ 'title', 'newTitle', 'equation', 'toggleForm'];
+  static targets = [ 'title', 'newTitle', 'step', 'toggleForm'];
 
   connect() {
     console.log('connected');
@@ -12,30 +12,31 @@ export default class extends Controller {
   submit(e) {
     e.preventDefault();
     const newTitle = this.newTitleTarget.value;
-    const equationId = this.equationTarget.dataset.equation;
+    const stepId = this.stepTarget.dataset.step;
     console.log(newTitle);
-    console.log(equationId);
+    console.log(stepId);
 
 
-    fetchWithToken(`/equations/${equationId}`, {
-      method: "PATCH",
+
+
+    fetchWithToken(`/steps/${stepId}/comments`, {
+      method: "POST",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ equation: { title: newTitle }})
+      body: JSON.stringify({ comment: { message :newTitle }})
     })
       .then(response => response.json())
       .then((data) => {
         // handle JSON response from server
         console.log(data);
-        this.titleTarget.innerText = newTitle;
-        this.toggleFormTarget.classList.add('d-none');
-      });
-  }
+        this.newTitleTarget.value = "";
+        console.log(newTitle);
+        const stepCommentTemplate = document.querySelector(`template[data-step-id="${stepId}"] div.step-comments`);
+        stepCommentTemplate.insertAdjacentHTML("beforeend", `<ul style='list-style: none'> <li>${newTitle}</li>  </ul> `);
 
-  hello(){
-    console.log('hi');
+      });
   }
 
 }
