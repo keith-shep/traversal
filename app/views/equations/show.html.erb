@@ -21,7 +21,7 @@
       <div class="steps d-flex flex-column">
         <% @equation.steps.each do |step| %>
           <div class="line d-flex">
-            <template data-step-id=<%= step.id  %>>
+            <template data-step-id=<%= step.id  %> >
               <div class="step-comments">
                 <% step.comments.each do |comment| %>
                   <ul style="list-style: none">

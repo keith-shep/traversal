@@ -13,7 +13,9 @@ const loadPopOvers = () => {
   });
 
   allSteps.forEach((step) => {
-    let template = document.querySelector(`template[data-step-id="${step.reference.dataset.stepId}"]`)
+
+   let template = document.querySelector(`template[data-step-id="${step.reference.dataset.tippyId}"]`)
+
     step.setProps({allowHTML: true})
     step.setContent(template.innerHTML);
   })
