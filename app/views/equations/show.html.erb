@@ -49,15 +49,14 @@
                 </div>
               </div>
           </div>
+              <%#= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, step_comments_path(step), class:"text-muted" %>
         <% end %>
 
 
-              <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, step_comments_path(step), class:"text-muted" %>
             </div>
 
       </div>
-        <% end %>
-    </div>
+
 
         <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
@@ -81,8 +80,9 @@
           </div>
         </div>
       <% end %>
-  </div>
-</div>
+
+    </div>
+
 
 
 <!-- <script>

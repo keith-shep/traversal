@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = [ 'title', 'newTitle', 'step', 'toggleForm'];
 
   connect() {
-    console.log('connected');
+    console.log('I am the add Comment Controller');
   }
 
   submit(e) {
@@ -35,7 +35,6 @@ export default class extends Controller {
         console.log(newTitle);
         const stepCommentTemplate = document.querySelector(`template[data-step-id="${stepId}"] div.step-comments`);
         stepCommentTemplate.insertAdjacentHTML("beforeend", `<ul style='list-style: none'> <li>${newTitle}</li>  </ul> `);
-
       });
   }
 
