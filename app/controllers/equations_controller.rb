@@ -23,6 +23,7 @@ class EquationsController < ApplicationController
   def show
     @equation = Equation.find(params[:id])
     @step = Step.new
+    @comment = Comment.new
   end
 
   def edit

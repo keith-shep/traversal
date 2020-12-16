@@ -15,6 +15,8 @@ export default class extends Controller {
     const equationId = this.equationTarget.dataset.equation;
     console.log(newTitle);
     console.log(equationId);
+
+
     fetchWithToken(`/equations/${equationId}`, {
       method: "PATCH",
       headers: {
@@ -29,8 +31,11 @@ export default class extends Controller {
         console.log(data);
         this.titleTarget.innerText = newTitle;
         this.toggleFormTarget.classList.add('d-none');
-
       });
+  }
+
+  hello(){
+    console.log('hi');
   }
 
 }
