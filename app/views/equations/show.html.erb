@@ -8,7 +8,8 @@
     <h2 contenteditable
         data-controller="equation-title"
         data-equation-title-target="title"
-        data-action="focusout->equation-title#update"
+        data-action="focusout->equation-title#update
+                     focusin->equation-title#write"
         data-equation-id="<%= @equation.id %>"
         ><%= @equation.title %></h2>
 
