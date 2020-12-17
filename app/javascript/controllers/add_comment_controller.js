@@ -52,7 +52,10 @@ export default class extends Controller {
 
     targetStep.setContent(targetTemplate.innerHTML)
 
-    targetStep.enable();
+    if (!targetStep.state.isEnabled) {
+      targetStep.enable();
+    }
+
   }
 
   loadPopOvers() {
