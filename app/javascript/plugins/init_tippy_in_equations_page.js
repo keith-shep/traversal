@@ -7,9 +7,7 @@ import 'tippy.js/dist/svg-arrow.css';
 const loadPopOvers = () => {
 
   const allSteps = tippy(document.querySelectorAll('.step.text-dark'), {
-    theme: 'light-border',
-    animation: 'shift-away',
-    placement: 'bottom',
+
   });
 
   allSteps.forEach((step) => {

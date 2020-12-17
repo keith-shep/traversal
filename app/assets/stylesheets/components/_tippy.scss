@@ -1,4 +1,13 @@
-.tippy-box[data-placement^="bottom"][data-theme~='light-border']{
-  padding-top: 10px;
+.tippy-box {
+  padding-top: 20px;
   padding-bottom: 10px;
+  margin-right: 20px;
+  padding-right: 20px;
+  width: 300px;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) !important;
+  background-color: white;
+  border-radius: 5px;
 }
+
+
