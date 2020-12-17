@@ -13,9 +13,11 @@
           <div class="line d-flex">
             <template data-step-id=<%= step.id  %> >
               <div class="step-comments">
-                <ul style="list-style: none">
+                <ul style="list-style: none; margin: 0px">
+                  <p class="text-black-50"> Comments  <i class="far fa-comment-dots"></i> </p>
+                  <hr>
                   <% step.comments.each do |comment| %>
-                      <li><%= comment.message %></li>
+                      <li class="mb-2"><%= comment.message %></li>
                   <% end %>
                 </ul>
               </div>

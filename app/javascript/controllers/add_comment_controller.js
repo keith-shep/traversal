@@ -4,7 +4,6 @@ import { fetchWithToken } from "../utils/fetch_with_token";
 import tippy from 'tippy.js';
 import 'tippy.js/themes/light-border.css';
 import 'tippy.js/animations/shift-away.css';
-import 'tippy.js/dist/svg-arrow.css';
 
 export default class extends Controller {
   static targets = [ 'title', 'newTitle', 'step', 'toggleForm'];
@@ -53,9 +52,8 @@ export default class extends Controller {
 
   loadPopOvers() {
     this.allSteps = tippy(document.querySelectorAll('.step.text-dark'), {
-      theme: 'light-border',
       animation: 'shift-away',
-      placement: 'bottom',
+      placement: 'left-start',
     });
 
     this.allSteps.forEach((step) => {
