@@ -2,8 +2,9 @@
   <h6 class="text-muted"> Key shortcuts <i class="fas fa-arrow-down text-muted"></i>  </h6>
 </button>
 
-<div class="collapse" id="collapseExample">
-  <table class="table caption-top text-muted border bg-white">
+<div class="collapse"  id="collapseExample">
+  <table class="table caption-top text-muted border bg-white"
+          data-controller="add-operator">
     <thead>
       <tr>
         <th scope="col">Key</th>
@@ -11,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr data-action="click->add-operator#call">
           <td class="key">\times</td>
           <td>
             <div class="step">
