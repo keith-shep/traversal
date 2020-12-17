@@ -51,7 +51,7 @@ export default class extends Controller {
     targetStep.setContent('');
 
     targetStep.setContent(targetTemplate.innerHTML)
-
+    // if targetStep is disabled
     if (!targetStep.state.isEnabled) {
       targetStep.enable();
     }
@@ -62,13 +62,14 @@ export default class extends Controller {
     this.allSteps = tippy(document.querySelectorAll('.step.text-dark'), {
       animation: 'shift-away',
       placement: 'left-start',
+      allowHTML: 'true'
     });
 
     this.allSteps.forEach((step) => {
 
      let template = document.querySelector(`template[data-step-id="${step.reference.dataset.tippyId}"]`)
 
-      step.setProps({allowHTML: true})
+
       step.setContent(template.innerHTML);
 
       if (!template.content.querySelector('li')) {
