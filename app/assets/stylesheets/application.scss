@@ -13,7 +13,9 @@
 @import "components/index";
 @import "pages/index";
 
-
+body {
+  min-height: 100vh;
+}
 
 .icons {
   opacity:0;
