@@ -62,6 +62,7 @@
 
         <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
+        <div> <p data-slideup-target='errors' class="text-danger"></p></div>
         <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
           <span data-controller="spanner"
                 data-action="keyup->slideup#submitWithEnter keyup->spanner#adjustHeight"

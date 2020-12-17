@@ -31,7 +31,7 @@ export default class extends Controller {
       body: JSON.stringify({ comment: { message :newTitle }})
     })
       .then(response => response.json())
-      .then((commentData) => this.updateTippy(commentData));
+      .then((commentData) => updateTippy(commentData));
   }
 
   updateTippy(commentData) {
