@@ -23,33 +23,53 @@
   opacity:1;
 }
 
-.share-btn > a {
-    padding: 5px;
-    font-size: 12px;
-    font-family: Verdana, Arial;
-}
-.share-btn > a:hover {
-    cursor: pointer;
-    text-decoration: none;
-}
-
 .btn {
   border-radius: 50px;
+}
+
+.share-buttons a {
+  cursor: pointer;
+  text-decoration: none;
+  padding-right: 10px;
 }
 
 
 i.fa-whatsapp {
   color: #25D366;
+
+  &:hover {
+    color: #17833f;
+  }
 }
+
 i.fa-facebook-square {
   color: #4267B2;
+
+  &:hover {
+    color: #304b82;
+  }
 }
+
 i.fa-twitter {
   color: #1DA1F2;
+
+  &:hover {
+    color: #0b78bb;
+  }
 }
+
 i.fa-telegram {
   color: #0096D6;
+
+  &:hover {
+    color: #006792;
+  }
 }
+
 i.fa-at {
-  color: #0E0000;
+  color: #7d8082;
+
+  &:hover {
+    color: #363738;
+  }
 }
