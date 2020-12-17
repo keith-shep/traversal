@@ -32,7 +32,7 @@ export default class extends Controller {
 
         let stepHtml = `
         <div class="line d-flex">
-          <div class="step text-dark new-step" data-slideup-target="source">
+          <div class="step text-dark new-step slide_up" data-slideup-target="source">
             ${latexValue}
           </div>
           <div class="icons ml-2">
