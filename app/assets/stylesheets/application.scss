@@ -12,7 +12,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+body {
+  min-height: 100vh;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
 
 
 .icons {
@@ -78,4 +85,9 @@ i.fa-at {
 td.key {
   color: blue;
   font-family: 'Space Mono', monospace;
+}
+
+
+.footer {
+  background-color: #4463AE;
 }
