@@ -13,11 +13,11 @@
           <div class="line d-flex">
             <template data-step-id=<%= step.id  %> >
               <div class="step-comments">
-                <% step.comments.each do |comment| %>
-                  <ul style="list-style: none">
-                    <li><%= comment.message %></li>
-                  </ul>
-                <% end %>
+                <ul style="list-style: none">
+                  <% step.comments.each do |comment| %>
+                      <li><%= comment.message %></li>
+                  <% end %>
+                </ul>
               </div>
             </template>
             <div class="step text-dark" data-slideup-target="source" data-tippy-id=<%= step.id %>>

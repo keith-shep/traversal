@@ -38,14 +38,17 @@ export default class extends Controller {
   updateTippy(commentData) {
     console.log(commentData);
     this.newTitleTarget.value = "";
-    let targetStep = this.allSteps.find((step) => {return step.reference.dataset.tippyId == commentData.comment.step_id })
+    let targetStep = this.allSteps.find((step) => { return step.reference.dataset.tippyId == commentData.comment.step_id })
     // in the targetStep
-    targetStep.setContent( //whatever is on the content right now + the cmment we just got// )
-    // append a new bullet point according to the content of the step USING THE TIPPY API
-    // const stepCommentTemplate = document.querySelector(`template[data-step-id="${stepId}"]`);
-    // const commentList = stepCommentTemplate.content.querySelector('.step-comments')
-    // commentList.insertAdjacentHTML("beforeend", `<ul style='list-style: none'> <li>${newTitle}</li>  </ul> `);
-    // debugger
+    // first - update the html of the target
+    let targetTemplate = document.querySelector(`template[data-step-id="${commentData.comment.step_id}"]`)
+    debugger
+
+    targetTemplate.content
+                  .querySelector('ul') // gets us the first ul we can inspect it later
+                  .insertAdjacentHTML('beforeend', `<li> ${commentData.comment.message} </li>`)
+
+    targetStep.setContent(targetTemplate.innerHTML)
   }
 
   loadPopOvers() {
