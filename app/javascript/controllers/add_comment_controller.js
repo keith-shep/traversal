@@ -31,23 +31,28 @@ export default class extends Controller {
       body: JSON.stringify({ comment: { message :newTitle }})
     })
       .then(response => response.json())
-      .then((commentData) => updateTippy(commentData));
+      .then((commentData) => this.updateTippy(commentData));
   }
 
   updateTippy(commentData) {
     console.log(commentData);
     this.newTitleTarget.value = "";
     let targetStep = this.allSteps.find((step) => { return step.reference.dataset.tippyId == commentData.comment.step_id })
+
     // in the targetStep
     // first - update the html of the target
     let targetTemplate = document.querySelector(`template[data-step-id="${commentData.comment.step_id}"]`)
-    debugger
+
 
     targetTemplate.content
                   .querySelector('ul') // gets us the first ul we can inspect it later
                   .insertAdjacentHTML('beforeend', `<li> ${commentData.comment.message} </li>`)
 
+    targetStep.setContent('');
+
     targetStep.setContent(targetTemplate.innerHTML)
+
+    targetStep.enable();
   }
 
   loadPopOvers() {
@@ -62,6 +67,11 @@ export default class extends Controller {
 
       step.setProps({allowHTML: true})
       step.setContent(template.innerHTML);
+
+      if (!template.content.querySelector('li')) {
+        step.disable();
+      }
+
     })
   }
 
