@@ -64,35 +64,8 @@
         <span data-action="keyup->slideup#submitWithEnter" class="form-control" id="mathquill-editable"></span>
         <%= f.submit "Add Step", class: "submit-btn btn btn-primary mt-2 align-self-start" %>
 
-        <div class="d-flex justify-content-end">
-          <p>Share</p>
 
-          <div class="share-btn"
-          data-url='<%= request.original_url %>'
-          data-title="Traversal"
-          data-desc="Web Equation"
-          >
-          <a class="btn-whatsapp" data-id="wa"><i class="fab fa-whatsapp"></i> </a>
-          <a class="btn-facebook" data-id="fb"><i class="fab fa-facebook-square"></i> </a>
-          <a class="btn-twitter" data-id="tw"><i class="fab fa-twitter"></i> </a>
-          <a class="btn-telegram" data-id="tg"><i class="fab fa-telegram"></i> </a>
-          <a class="btn-mail" data-id="mail"><i class="fas fa-at"></i> </a>
-          </div>
-        </div>
+        <%= render partial: 'share_buttons', locals: {title: @equation.title} %>
       <% end %>
       </div>
     </div>
-
-
-
-<!-- <script>
-  const form = document.querySelector("#new_step")
-  window.addEventListener("keyup", function(event) {
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-      event.submitWithEnterpreventDefault();
-      form.submit();
-    }
-  });
-</script> -->
-
