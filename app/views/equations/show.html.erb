@@ -63,7 +63,10 @@
         <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
         <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
-        <span data-action="keyup->slideup#submitWithEnter" class="form-control" id="mathquill-editable"></span>
+          <span data-controller="spanner"
+                data-action="keyup->slideup#submitWithEnter keyup->spanner#adjustHeight"
+                data-spanner-target="span"
+                class="form-control" id="mathquill-editable"></span>
         <%= f.submit "Add Step", class: "submit-btn btn btn-primary mt-2 align-self-start" %>
 
         <div class="d-flex justify-content-end">
