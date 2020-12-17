@@ -71,7 +71,7 @@ puts 'Created eq2!'
 
 puts 'Creating eq3...'
 eq3 = Equation.new(
-  title: "indices, pg 52, eg 2, (ii)",
+  title: "indices",
 )
 eq3.user = user1
 eq3.save
@@ -95,7 +95,7 @@ puts 'Created eq3!'
 
 puts 'Creating eq4...'
 eq4 = Equation.new(
-  title: "square root, pg 52, eg 3",
+  title: "square root",
 )
 eq4.user = user1
 eq4.save
@@ -121,7 +121,7 @@ puts 'Created eq4!'
 
 puts 'Creating eq5...'
 eq5 = Equation.new(
-  title: "surds, pg 55, eg 5",
+  title: "surds",
 )
 eq5.user = user1
 eq5.save
