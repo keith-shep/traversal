@@ -40,7 +40,7 @@ import { hideCommentForm } from './../utils/comment_hide.js'
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  initMathQuill();
+  //initMathQuill();
   hideEditForm();
   hideCommentForm();
 });
