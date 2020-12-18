@@ -57,7 +57,6 @@ export default class extends Controller {
   }
 
   submitWithEnter(e) {
-    console.log(e.keyCode)
     if (e.keyCode == 13) {
       this.sendStepToServer();
     }
