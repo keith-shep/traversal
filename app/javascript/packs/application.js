@@ -33,7 +33,6 @@ import 'share-buttons/dist/share-buttons.js'
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initMathQuill } from './../plugins/init_mathquill.js';
-import { loadPopOvers } from './../plugins/init_tippy_in_equations_page.js';
 import { hideEditForm } from './../utils/edit_hide.js'
 import { hideCommentForm } from './../utils/comment_hide.js'
 
@@ -41,8 +40,7 @@ import { hideCommentForm } from './../utils/comment_hide.js'
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  initMathQuill();
-  loadPopOvers();
+  //initMathQuill();
   hideEditForm();
   hideCommentForm();
 });

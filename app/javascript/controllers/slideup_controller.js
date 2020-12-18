@@ -3,7 +3,7 @@ import { fetchWithToken } from "../utils/fetch_with_token";
 import MathQuill from 'mathquill';
 
 export default class extends Controller {
-  static targets = [ 'source', 'equationId'];
+  static targets = [ 'source', 'equationId', 'errors'];
 
   connect() {
     console.log(this.sourceTarget);
@@ -24,11 +24,15 @@ export default class extends Controller {
     }).then(response => response.json()).then((data) => {
         // handle JSON response from server
         console.log(data);
+        if (data.errors) {
+          this.errorsTarget.innerText = "Equation cannot be empty!";
+        } else {
+        this.errorsTarget.innerText = '';
         const steps = document.querySelector(".steps");
 
         let stepHtml = `
         <div class="line d-flex">
-          <div class="step text-dark new-step" data-slideup-target="source">
+          <div class="step text-dark new-step slide_up" data-slideup-target="source">
             ${latexValue}
           </div>
           <div class="icons ml-2">
@@ -38,13 +42,13 @@ export default class extends Controller {
           </div>
         </div>
         `
-
         steps.insertAdjacentHTML("beforeend", stepHtml);
 
         let newStep = document.querySelector('.new-step');
         newStep.classList.remove("new-step");
         MQ.StaticMath(newStep);
-      });
+      }
+    });
   }
 
   submit(event) {
@@ -53,7 +57,6 @@ export default class extends Controller {
   }
 
   submitWithEnter(e) {
-    // console.log(e.keyCode)
     if (e.keyCode == 13) {
       this.sendStepToServer();
     }

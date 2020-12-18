@@ -1,0 +1,5 @@
+meta_product_name: "Traversal"
+meta_title: "Traversal - Simple Web Equations"
+meta_description: "Traversal is a simple latex math formatter for teaching online or lesson prepwork"
+meta_image: "logo.png" # should exist in `app/assets/images/`
+twitter_account: ""   # required for Twitter Cards

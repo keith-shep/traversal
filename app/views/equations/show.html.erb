@@ -1,43 +1,51 @@
-<div class="d-flex">
+<%= link_to 'Back to library'.html_safe, equations_path, class:"text-dark text-left mt-3" %>
+<div class="d-flex mt-3">
   <div class="card text-secondary border-0 mr-4 bg-transparent" style="width: 12rem;">
-    <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-transparent text-muted text-left" %>
     <%= render 'collapsable_cheatsheet' %>
   </div>
 
   <div class="container w-50 border shadow-sm px-3 py-3 ml-5 bg-white align-self-start">
 
-    <h2><%= @equation.title %></h2>
+    <h2 contenteditable
+        data-controller="equation-title"
+        data-equation-title-target="title"
+        data-action="focusout->equation-title#update
+                     focusin->equation-title#write"
+        data-equation-id="<%= @equation.id %>"
+        ><%= @equation.title %></h2>
+
+
     <div data-controller="slideup">
       <div class="steps d-flex flex-column">
         <% @equation.steps.each do |step| %>
           <div class="line d-flex">
             <template data-step-id=<%= step.id  %> >
               <div class="step-comments">
-                <% step.comments.each do |comment| %>
-                  <ul style="list-style: none">
-                    <li><%= comment.message %></li>
-                  </ul>
-                <% end %>
+                <ul style="list-style: none; margin: 0px">
+                  <p class="text-black-50"> Comments  <i class="far fa-comment-dots"></i> </p>
+                  <hr>
+                  <% step.comments.each do |comment| %>
+                      <li class="mb-2"><%= comment.message %></li>
+                  <% end %>
+                </ul>
               </div>
             </template>
             <div class="step text-dark" data-slideup-target="source" data-tippy-id=<%= step.id %>>
               <%= step.latex %>
             </div>
             <div class="icons ml-2 d-flex">
-              <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_step_path(step), class:"text-muted"%>
-              <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote:true, class:"text-muted", id:"#{step.id}" %>
-
+              <%= link_to '<i class="fas fa-minus-circle"></i>'.html_safe, delete_step_path(step), method: :delete, remote:true, class:"text-danger", id:"#{step.id}" %>
 
                 <div class="d-flex" data-controller="add-comment">
                     <div class="d-flex">
 
-                      <%= link_to '<i class="far fa-comment-dots"></i>'.html_safe, new_step_comment_path(step), class:"text-muted pb-3 mr-3 post_link", data: { step: step.id, 'add-comment-target': 'step' } %>
+                      <%= link_to '<i class="far fa-comment-dots"></i>'.html_safe, new_step_comment_path(step), class:"text-white pb-3 mr-3 post_link", data: { step: step.id, 'add-comment-target': 'step' } %>
                       <% @comment.step = step %>
 
                       <%= simple_form_for([step, @comment], data: { action: 'submit->add-comment#submit' }, url: new_step_comment_path(step)) do |f| %>
                         <div class="row title_edit" id="edit-equation-<%= step.id %>" data-add-comment-target="toggleForm">
                           <div class="col">
-                            <%= f.input :message, placeholder:"Add comment", label: false, input_html: { data: { 'add-comment-target': 'newTitle' } } %>
+                            <%= f.input :message, placeholder:"Add comment", label: false, input_html: { data: { 'add-comment-target': 'newTitle' }, class: "comment_form"  } %>
                           </div>
                           <div class="col">
                             <button type="submit" class="btn border-success text-success"><i class="fas fa-check"></i></button>
@@ -50,49 +58,24 @@
               </div>
           </div>
         <% end %>
-
-
-              <%= link_to '<i class="far fa-comment-dots"></i></i>'.html_safe, step_comments_path(step), class:"text-muted" %>
             </div>
 
-      </div>
-        <% end %>
-    </div>
+
+
 
         <%= simple_form_for [@equation, @step], data: { action: "submit->slideup#submit" } do |f| %>
         <input type="hidden" id="equation_id" value="<%= @equation.id %>" data-slideup-target="equationId">
+        <div> <p data-slideup-target='errors' class="text-danger"></p></div>
         <%= f.input :latex, label: false, input_html: { class: 'd-none' } %>
-        <span data-action="keyup->slideup#submitWithEnter" class="form-control" id="mathquill-editable"></span>
+          <span data-controller="spanner"
+                data-action="keyup->slideup#submitWithEnter keyup->spanner#adjustHeight"
+                data-spanner-target="span"
+                class="form-control" id="mathquill-editable"></span>
         <%= f.submit "Add Step", class: "submit-btn btn btn-primary mt-2 align-self-start" %>
 
-        <div class="d-flex justify-content-end">
-          <p>Share</p>
 
-          <div class="share-btn"
-          data-url='<%= request.original_url %>'
-          data-title="Traversal"
-          data-desc="Web Equation"
-          >
-          <a class="btn-whatsapp" data-id="wa"><i class="fab fa-whatsapp"></i> </a>
-          <a class="btn-facebook" data-id="fb"><i class="fab fa-facebook-square"></i> </a>
-          <a class="btn-twitter" data-id="tw"><i class="fab fa-twitter"></i> </a>
-          <a class="btn-telegram" data-id="tg"><i class="fab fa-telegram"></i> </a>
-          <a class="btn-mail" data-id="mail"><i class="fas fa-at"></i> </a>
-          </div>
-        </div>
+        <%= render partial: 'share_buttons', locals: {title: @equation.title} %>
       <% end %>
-  </div>
+      </div>
+    </div>
 </div>
-
-
-<!-- <script>
-  const form = document.querySelector("#new_step")
-  window.addEventListener("keyup", function(event) {
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-      event.submitWithEnterpreventDefault();
-      form.submit();
-    }
-  });
-</script> -->
-

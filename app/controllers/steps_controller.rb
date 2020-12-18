@@ -22,7 +22,9 @@ class StepsController < ApplicationController
       end
     else
       # render :new # should render error message
-      render json: { success: false }
+      respond_to do |format|
+        format.json { render json: { errors: @step.errors.messages } }
+      end
     end
   end
 
