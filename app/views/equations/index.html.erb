@@ -1,10 +1,10 @@
 <h1>Library</h1>
 <%= link_to '+ New equation', equation_create_path, method: :post, class:"btn btn-primary mb-4 " %>
 
-<div class="card">
+<div class="card" style="background-color: rgba(255, 255, 255, 0); border: 0px;">
   <% @equations.reverse_each do |equation| %>
   <div data-controller="edit-title">
-    <div class="card-body shadow-sm">
+    <div class="card-body shadow-sm mb-4 border" style="background-color: rgba(255, 255, 255, 100);">
       <div class="d-flex align-items-center">
         <h3 class="card-title mr-2 py-2"><%= link_to equation.title, equation_path(equation), data: { 'edit-title-target': 'title' } %></h3>
         <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_equation_path(equation), class:"text-muted pb-3 mr-3 post_link", data: { equation: equation.id, 'edit-title-target': 'equation' } %>
