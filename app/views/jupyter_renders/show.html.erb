@@ -1,0 +1,14 @@
+
+
+<h1 class='text-primary mt-3'> <%= @equation.title %></h1>
+<p text-small> for Jupyter Notebooks 🐍 </p>
+
+<ul data-controller='jupyter-renders'>
+  <% @equation.steps.each_with_index do |step, index| %>
+  <li>
+    <p> <%= index + 1 %>  <span class="step"> <%= step.latex %></span> </p>
+  </li>
+  <% end %>
+</ul>
+
+

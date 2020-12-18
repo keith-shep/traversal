@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'jupyter_renders/show'
   get 'jupyter_exports/show'
   devise_for :users
   root to: 'pages#home'
