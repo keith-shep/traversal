@@ -13,6 +13,7 @@ module Traversal
       generate.helper false
       generate.test_framework :test_unit, fixture: false
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    config.assets.paths << "#{Rails.root}/app/assets/videos"
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
