@@ -1,11 +1,15 @@
-<div class="jumbotron landing-img mt-5 rounded shadow-lg">
 
-  <h1 class="display-4 text-light">Teachers, pens down.</h1>
-  <p class="lead text-light">Formatting math equations for lessons is a huge pain.</p>
-  <p class="lead text-light">Traversal makes that as easy as 1,2,3.</p>
-  <hr class="my-4">
 
-  <%= link_to "Let's get started!", equations_path, class:"btn btn-primary btn-lg rounded"%>
+<div class="jumbotron landing-img mt-5 rounded shadow-lg d-flex" >
+  <div>
+    <h1 class="display-4 text-light">Teachers, pens down.</h1>
+    <p class="lead text-light">Formatting math equations for lessons is a huge pain.</p>
+    <p class="lead text-light">Traversal makes that as easy as 1,2,3.</p>
+  <%= link_to "Let's get started!", equations_path, class:"btn btn-primary btn-lg rounded mt-5"%>
+  </div>
+  <div>
+    <%= video_tag "product_video.mov", autoplay: :autoplay, loop: :loop, muted: :muted, class: "home-video rounded" %>
+  </div>
 </div>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
