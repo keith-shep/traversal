@@ -1,22 +1,16 @@
-<div class="container d-flex">
-  <div class="card w-50 shadow-sm">
-    <h2>
-      Embed your code in Jupyter
-    </h2>
-    <div class="code-block">
-      <p>Your code here</p>
+<div class="container d-flex flex-column">
+  <h2 class="text-muted">
+    Embed your code in Jupyter Notebook
+  </h2>
+  <div class="card w-100 shadow-sm">
+    <div class="code-block bg-dark pt-3 pl-3">
       <code>
-        <pre>
-          <%=
-          "from IPython.display import IFrame
-
-          IFrame(src='https://traversal-app.herokuapp.com/equations/#{@equation.id}/export', width=700, height=600)"
-           %>
-         </pre>
+<pre class="text-white">
+<%= "from IPython.display import IFrame
+IFrame(src='https://traversal-app.herokuapp.com/equations/#{@equation.id}/jupyter_render', width=700, height=600)"
+%></pre>
       </code>
     </div>
   </div>
 
 </div>
-
-
