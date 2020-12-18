@@ -1,6 +1,6 @@
-<div class="d-flex">
+<%= link_to 'Back to library'.html_safe, equations_path, class:"text-dark text-left mt-3" %>
+<div class="d-flex mt-3">
   <div class="card text-secondary border-0 mr-4 bg-transparent" style="width: 12rem;">
-    <%= link_to '<i class="fas fa-arrow-left"></i> Back to library'.html_safe, equations_path, class:"btn btn-transparent text-muted text-left" %>
     <%= render 'collapsable_cheatsheet' %>
   </div>
 
