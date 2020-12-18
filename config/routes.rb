@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'jupyter_exports/show'
   devise_for :users
   root to: 'pages#home'
 
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
 
   # Step < Equation
   resources :equations, only: [ ] do
+    resource :jupyter_export, only: [:show] # from here we copy paste code
+    resource :jupyter_render, only: [:show] # actual code that gets into Jupyter
     resources :steps, only: [ :create, :index ]
   end
 
