@@ -8,12 +8,12 @@ Bundler.require(*Rails.groups)
 
 module Traversal
   class Application < Rails::Application
+    config.assets.paths << "#{Rails.root}/app/assets/videos"
     config.generators do |generate|
       generate.assets false
       generate.helper false
       generate.test_framework :test_unit, fixture: false
     config.action_view.embed_authenticity_token_in_remote_forms = true
-    config.assets.paths << "#{Rails.root}/app/assets/videos"
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
