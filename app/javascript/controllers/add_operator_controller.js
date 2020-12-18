@@ -45,7 +45,6 @@ export default class extends Controller {
   addShortcuts(mathField) {
     const allShortCutsTable = document.querySelectorAll('tbody > tr');
     allShortCutsTable.forEach((tr) => {
-      debugger
       tr.addEventListener('click', () => {
         mathField.write(tr.cells[0].innerText);
       })
